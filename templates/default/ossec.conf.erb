@@ -9,7 +9,11 @@
     <email_to><%= email %></email_to>
     <% end -%>
     <smtp_server><%= @ossec['smtp'] %></smtp_server>
+<% if @ossec['smtp_origin_email'] -%>
+    <email_from><%= @ossec['smtp_origin_email'] %></email_from>
+<% else -%>
     <email_from>ossecm@<%= node['fqdn'] %></email_from>
+<% end -%>
 <% @ossec['white_list'].each do |wl| -%>
     <white_list><%= wl %></white_list>
 <% end -%>
