@@ -38,7 +38,7 @@ group 'ossec' do
 end
 
 apache_dir = node['apache']['dir']
-apache_doc_root = "#{apache_dir}/htdocs"
+apache_doc_root = node['ossec']['wui']['destination']
 
 directory apache_doc_root do
     action :create

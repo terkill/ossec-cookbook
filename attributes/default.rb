@@ -63,3 +63,4 @@ default['ossec']['wui']['version']      = "0.3"
 default['ossec']['wui']['url']          = "http://www.ossec.net/files/ossec-wui-#{node['ossec']['wui']['version']}.tar.gz"
 default['ossec']['users_databag']       = 'users'
 default['ossec']['users_databag_group'] = 'sysadmin'
+default['ossec']['wui']['destination']  = "/var/www/html"
