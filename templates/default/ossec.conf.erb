@@ -31,6 +31,14 @@
   </remote>
 
 <% end -%>
+
+<% if @ossec['install_type'] == 'server' -%>
+  <syslog_output>
+    <server><%= @ossec['syslog_server'] %></server>
+  </syslog_output>
+
+<% end -%>
+
   <rules>
     <include>rules_config.xml</include>
     <include>pam_rules.xml</include>
