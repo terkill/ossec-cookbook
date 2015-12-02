@@ -39,6 +39,18 @@
 
 <% end -%>
 
+<% if @ossec['logstash_server'] -%>
+  <syslog_output>
+    <server><%= @ossec['logstash_server'] %></server>
+    <port><%= @ossec['logstash_server'] %></port>
+    <format>default</format>
+  </syslog_output>
+
+<% end -%>
+
+
+
+
   <rules>
     <include>rules_config.xml</include>
     <include>pam_rules.xml</include>
