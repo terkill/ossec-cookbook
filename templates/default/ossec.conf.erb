@@ -42,7 +42,7 @@
 <% if @ossec['logstash_server'] -%>
   <syslog_output>
     <server><%= @ossec['logstash_server'] %></server>
-    <port><%= @ossec['logstash_server'] %></port>
+    <port><%= @ossec['logstash_port'] %></port>
     <format>default</format>
   </syslog_output>
 
