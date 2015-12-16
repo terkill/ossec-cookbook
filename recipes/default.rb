@@ -36,6 +36,12 @@ template "#{Chef::Config[:file_cache_path]}/#{ossec_dir}/etc/preloaded-vars.conf
   variables :ossec => node['ossec']['user']
 end
 
+execute 'make setdb' do
+  cwd "#{Chef::Config[:file_cache_path]}/#{ossec_dir}/src"
+  action :nothing
+  action :run if node['ossec']['database']
+end
+
 bash "install-ossec" do
   cwd "#{Chef::Config[:file_cache_path]}/#{ossec_dir}"
   code <<-EOH

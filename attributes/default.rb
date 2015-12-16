@@ -23,15 +23,17 @@ default['ossec']['server_role'] = "ossec_server"
 default['ossec']['server_env']  = nil
 default['ossec']['checksum']    = "917989e23330d18b0d900e8722392cdbe4f17364a547508742c0fd005a1df7dd"
 default['ossec']['version']     = "2.8.3"
-default['ossec']['url']         = "http://www.ossec.net/files/ossec-hids-#{node['ossec']['version']}.tar.gz"
+default['ossec']['url']         = "https://bintray.com/artifact/download/ossec/ossec-hids/ossec-hids-#{node['ossec']['version']}.tar.gz"
 default['ossec']['logs']        = []
 default['ossec']['syscheck_freq'] = 79200
 default['ossec']['disable_config_generation'] = false
+default['ossec']['with_db'] = false
 
 # data bag configuration
-default['ossec']['data_bag']['encrypted']  = false
+default['ossec']['data_bag']['encrypted']  = true
 default['ossec']['data_bag']['name']       = "ossec"
 default['ossec']['data_bag']['ssh']        = "ssh"
+default['ossec']['data_bag']['use_vault']  = true
 
 # server-only
 default['ossec']['server']['maxagents'] = 256

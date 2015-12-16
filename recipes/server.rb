@@ -26,7 +26,7 @@ agent_manager = "#{node['ossec']['user']['dir']}/bin/ossec-batch-manager.pl"
 
 ssh_hosts = Array.new
 
-search_string = "ossec:[* TO *]" 
+search_string = "ossec:[* TO *]"
 search_string << " AND chef_environment:#{node['ossec']['server_env']}" if node['ossec']['server_env']
 search_string << " NOT role:#{node['ossec']['server_role']}"
 
@@ -49,10 +49,16 @@ template "/usr/local/bin/dist-ossec-keys.sh" do
   not_if { ssh_hosts.empty? }
 end
 
+
 dbag_name = node["ossec"]["data_bag"]["name"]
 dbag_item = node["ossec"]["data_bag"]["ssh"]
 if node["ossec"]["data_bag"]["encrypted"]
-  ossec_key = Chef::EncryptedDataBagItem.load(dbag_name, dbag_item)
+  if node['ossec']['data_bag']['use_vault']
+    include_recipe 'chef-vault'
+    ossec_key = ChefVault::Item.load(dbag_name, dbag_item)
+  else
+    ossec_key = Chef::EncryptedDataBagItem.load(dbag_name, dbag_item)
+  end
 else
   ossec_key = data_bag_item(dbag_name, dbag_item)
 end

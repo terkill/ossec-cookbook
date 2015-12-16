@@ -13,3 +13,6 @@ end
 %w{ debian ubuntu arch redhat centos fedora }.each do |os|
   supports os
 end
+
+depends 'chef-vault', '~> 1.3.2'
+

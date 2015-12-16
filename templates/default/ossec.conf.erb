@@ -48,6 +48,15 @@
 
 <% end -%>
 
+<% if @ossec['database'] -%>
+  <database_output>
+    <hostname><%= @ossec['database']['hostname'] %></hostname>
+    <username><%= @ossec['database']['username'] %></username>
+    <password><%= ChefVault::Item.load('ossec', "mysql")['ossec_password'] %></password>
+    <database><%= @ossec['database']['database_name'] %></database>
+    <type>mysql</type>
+  </database_output>
+<% end -%>
 
 
 
